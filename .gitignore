@@ -1,4 +1,5 @@
 _lame.c
 *.so
 build
+*.pyc
 *~
