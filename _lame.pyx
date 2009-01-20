@@ -56,6 +56,7 @@ cdef extern from "lame/lame.h":
     lame_global_flags *lame_init()
     int lame_set_num_channels(lame_global_flags *, int)
     int lame_get_num_channels(lame_global_flags *)
+    int lame_get_frameNum(lame_global_flags *)
 
 # Core compiled definitions
 __version__ = "0.0.1"
@@ -123,12 +124,15 @@ cdef class Encoder:
         if self.flags == NULL:
             raise MemoryError("lame_init failed")
 
-    def set_num_channels(self, int value):
-        lame_set_num_channels(self.flags, value)
+    property num_channels:
+        """Number of channels."""
+        def __get__(self):
+            return lame_get_num_channels(self.flags)
+        def __set__(self, int value):
+            lame_set_num_channels(self.flags, value)
 
-    def get_num_channels(self):
-        return lame_get_num_channels(self.flags)
+    property frame_num:
+        """Number of frames encoded so far (read-only)."""
+        def __get__(self):
+            return lame_get_frameNum(self.flags)
 
-    def foo(self):
-        """asdf"""
-        pass
