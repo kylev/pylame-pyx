@@ -1,5 +1,6 @@
-# TODO Get -D constant working
-#cdef extern char* PYLAME_VERSION
+cdef extern from *:
+    # From -D at compile time.
+    char* PYLAME_VERSION
 
 cdef extern from "lame/lame.h":
     int vbr_off
@@ -58,8 +59,9 @@ cdef extern from "lame/lame.h":
     int lame_get_num_channels(lame_global_flags *)
     int lame_get_frameNum(lame_global_flags *)
 
+
 # Core compiled definitions
-__version__ = "0.0.1"
+__version__ = PYLAME_VERSION
 VERSION = get_lame_version()
 VERSION_SHORT = get_lame_short_version()
 VERSION_TINY = get_lame_very_short_version()

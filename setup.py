@@ -4,9 +4,11 @@ from Cython.Distutils import build_ext
 
 
 pylame_version = '0.0.1'
+pylame_version_str = '"%s"' % (pylame_version,)
 pylame_ext = Extension("_lame", ["_lame.pyx"],
                        libraries=['mp3lame'],
-                       define_macros=[('PYLAME_VERSION', pylame_version)])
+                       define_macros=[('PYLAME_VERSION', pylame_version_str)])
+
 setup(
     name='lame',
     version=pylame_version,

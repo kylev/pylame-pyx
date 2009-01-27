@@ -12,7 +12,7 @@ __all__ = ['__version__', 'VERSION', 'VERSION_SHORT',
            'PRESET_VBR_3', 'PRESET_VBR_2', 'PRESET_VBR_1', 'PRESET_VBR_0',
            'Encoder', 'version',
            'encode_file']
-           
+
 
 def encode_file(in_file, out_file, encoder=None):
     """Encode a file."""
